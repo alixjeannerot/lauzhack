@@ -2,10 +2,10 @@
   "name": "skyscanner-game",
   "version": "1.0.0",
   "description": "Skyscanner Game for LauzHack",
-  "main": "index.js",
+  "main": "src/ch/epfl/lauzhack/skyscanner/main/index.ts",
   "scripts": {
     "start": "npm run build:live",
-    "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./index.ts",
+    "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/ch/epfl/lauzhack/skyscanner/main/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -28,5 +28,10 @@
     "nodemon": "^1.12.1",
     "ts-node": "^3.3.0",
     "typescript": "^2.6.1"
+  },
+  "dependencies": {
+    "@types/express": "^4.0.39",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2"
   }
 }
