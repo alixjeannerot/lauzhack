@@ -23,12 +23,12 @@ export default class Mission{
         this.end=false;
     }
 
-    public assignMission(user :User){
+    public assignMission(user :User):void{
         this.participant.push(user);
-        user.setMission(this);  ///////check this
+        user.setMission(this);
     }
 
-    public isMissionComplete(){
+    public isMissionComplete():boolean{
         if (Date.now()<this.deadLine){
             for (let i=0;i<this.participant.length;i++){
                 if (this.participant[i].getPosition==this.arrival){

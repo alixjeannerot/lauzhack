@@ -5,7 +5,6 @@
  */
 
 import User from "../game/objects/User";
-
 const express = require('express');
 const session = require('express-session');
 
@@ -35,3 +34,4 @@ app.use(function(req, res){
 });
 
 app.listen(8080);
+
