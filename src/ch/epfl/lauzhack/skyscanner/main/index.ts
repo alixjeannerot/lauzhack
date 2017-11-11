@@ -1,25 +1,10 @@
-import http = require('http');
-import os = require('os');
-import fs = require('fs');
+const express = require('express');
+import {Request, Response} from "express"
+const app = express();
 
-class HttpServer {
-    nodePort: number;
+app.get('/', function(re: Request, res: Response) {
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('Vous êtes à l\'accueil');
+});
 
-    constructor (port: number) {
-        this.nodePort = port;
-    }
-
-    private static onRequest(request: http.IncomingMessage, response: http.ServerResponse) {
-        response.writeHead(200);
-        response.write("Hello World");
-        response.end();
-    }
-
-    onStart() {
-        let httpServer = http.createServer(HttpServer.onRequest);
-        httpServer.listen(this.nodePort);
-        console.log('Server listening on http://' + os.hostname() + ':' + this.nodePort + '/');
-    }
-}
-
-new HttpServer(8080).onStart();
+app.listen(8080);
