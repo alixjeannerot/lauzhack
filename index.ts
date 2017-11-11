@@ -9,14 +9,14 @@ class HttpServer {
         this.nodePort = port;
     }
 
-    onRequest(request: http.IncomingMessage, response: http.ServerResponse) {
+    private static onRequest(request: http.IncomingMessage, response: http.ServerResponse) {
         response.writeHead(200);
         response.write("Hello World");
         response.end();
     }
 
     onStart() {
-        let httpServer = http.createServer(this.onRequest);
+        let httpServer = http.createServer(HttpServer.onRequest);
         httpServer.listen(this.nodePort);
         console.log('Server listening on http://' + os.hostname() + ':' + this.nodePort + '/');
     }
