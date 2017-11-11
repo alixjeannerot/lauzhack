@@ -18,6 +18,7 @@ export default class User{
         this.country=country;
         this.mission=mission;
         this.inTransport=inTransport;
+        this.journey = journey;
     }
 
     get getPosition(){
@@ -45,7 +46,9 @@ export default class User{
     }
 
     public debit (toDebit:number){
-        return this.setMoney(this.money-toDebit);
+        if(toDebit>0){
+            return this.setMoney(this.money-toDebit);
+        }
     }
 
     public travelTo (destination :Journey){
@@ -58,7 +61,8 @@ export default class User{
             return this.debit(destination.getCost);
         }
     }
-    public updateStatus(){
+
+    private updateStatus(){
         if (this.journey.getDepartTime>=Date.now() || this.journey.getArrivalTime<=Date.now()){
             return false;
         }

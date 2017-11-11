@@ -25,7 +25,7 @@ export default class Mission{
 
     public assignMission(user :User){
         this.participant.push(user);
-        user.setMission(this)  ///////check this
+        user.setMission(this);  ///////check this
     }
 
     public isMissionComplete(){
