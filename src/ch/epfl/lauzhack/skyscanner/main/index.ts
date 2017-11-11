@@ -13,7 +13,7 @@ app.get('/', function(req, res) {
         res.render('index.ejs', {user: req.session.user});
     }
     else{
-        req.session.user = "Hello";
+        req.session.user = "Xavier";
         res.render('index.ejs', {user: "nobody"});
     }
 });
