@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run build:live",
     "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/ch/epfl/lauzhack/skyscanner/main/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compile": "tsc --outDir ./build --module commonjs ./static/js/*.ts"
   },
   "repository": {
     "type": "git",
@@ -34,10 +34,5 @@
     "ejs": "^2.5.7",
     "express": "^4.16.2",
     "osm": "^1.0.0"
-  },
-  "scripts": {
-    "start": "npm run build:live",
-    "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/ch/epfl/lauzhack/skyscanner/main/index.ts",
-    "compile": "tsc --outDir ./build --module commonjs ./static/js/*.ts"
   }
 }
