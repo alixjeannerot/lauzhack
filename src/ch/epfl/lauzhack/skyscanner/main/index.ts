@@ -6,6 +6,8 @@
 
 import User from "../game/objects/User";
 import Mission from "../game/objects/Mission";
+import FlightResponse from "../request/flight/response/FlightResponse";
+import Test from "../game/objects/Test";
 
 const express = require('express');
 const session = require('express-session');
@@ -36,3 +38,4 @@ app.use(function(req, res){
 });
 
 app.listen(8080);
+
