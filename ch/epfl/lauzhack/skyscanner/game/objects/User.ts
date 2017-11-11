@@ -20,12 +20,16 @@ export default class User{
         this.inTransport=inTransport;
     }
 
+    get getPosition(){
+        return this.position;
+    }
+
     get getInTransport(){
-        this.updateStatus();
+        this.inTransport=this.updateStatus();
         return this.inTransport;
     }
 
-    set setMission(value: Mission) {
+    public setMission(value: Mission) {
         this.mission = value;
         this.setMoney(value.budget);
         this.setPosition(value.depart, value.departCountry);
@@ -45,7 +49,7 @@ export default class User{
     }
 
     public travelTo (destination :Journey){
-        this.updateStatus();
+        this.inTransport= this.updateStatus();
         if (!this.getInTransport){
             if (this.position==destination.getDepart){
                 this.setPosition(destination.getArrival,destination.getArrivalCountry);
@@ -56,8 +60,8 @@ export default class User{
     }
     public updateStatus(){
         if (this.journey.getDepartTime>=Date.now() || this.journey.getArrivalTime<=Date.now()){
-            this.inTransport=false;
+            return false;
         }
-        else this.inTransport=true;
+        else return true;
     }
 }
