@@ -5,7 +5,6 @@
  */
 
 import User from "../game/objects/User";
-import Mission from "../game/objects/Mission";
 
 const express = require('express');
 const session = require('express-session');
