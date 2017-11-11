@@ -1,4 +1,6 @@
-export enum TypeTransport{
+enum TypeTransport{
     PLANE,
-    CAR,
+    CAR
 }
+
+export default TypeTransport;
