@@ -2,6 +2,7 @@ import API from "../config/API";
 import Country from "./flight/response/types/Country";
 import FlightQuote from "./flight/quote/FlightQuote";
 import FlightResponse from "./flight/response/FlightResponse";
+import {Promise} from "es6-promise";
 
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
@@ -42,6 +43,7 @@ export default class SkyscannerRequest {
     }
 
     public getFlightQuotes(): Promise<FlightResponse> {
+        /*
         if (this._currentCountry.isUndefined() || this._currentCountry.length < 1) {
             throw new Error("currentCountry is illegal");
         }
@@ -71,6 +73,8 @@ export default class SkyscannerRequest {
                 console.log("ERROR:");
                 console.log(error);
             });
+            */
+        return new Promise(resolve => {});
     }
 
     public static getCountries(): Promise<Country> {
