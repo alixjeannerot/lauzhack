@@ -1,0 +1,32 @@
+{
+  "name": "skyscanner-game",
+  "version": "1.0.0",
+  "description": "Skyscanner Game for LauzHack",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run build:live",
+    "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alixjeannerot/lauzhack.git"
+  },
+  "keywords": [
+    "lauzhack",
+    "skyscanner",
+    "game"
+  ],
+  "author": "Alix Jeannerot, Xavier Pantet, Cedric Maire",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alixjeannerot/lauzhack/issues"
+  },
+  "homepage": "https://github.com/alixjeannerot/lauzhack#readme",
+  "devDependencies": {
+    "@types/node": "^8.0.51",
+    "nodemon": "^1.12.1",
+    "ts-node": "^3.3.0",
+    "typescript": "^2.6.1"
+  }
+}
