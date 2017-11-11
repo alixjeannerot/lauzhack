@@ -68,4 +68,8 @@ export default class User{
         }
         else return true;
     }
+
+    public static defaultUser(): User{
+        return new User("", 0, "", "", Mission.defaultMission(), false, Journey.defaultJourney());
+    }
 }

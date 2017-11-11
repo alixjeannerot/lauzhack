@@ -44,4 +44,8 @@ export default class Journey {
     get getCost(){
         return this.cost;
     }
+
+    public static defaultJourney(): Journey{
+        return new Journey("", "", "", "", 0, 0, 0, TypeTransport.PLANE);
+    }
 }
