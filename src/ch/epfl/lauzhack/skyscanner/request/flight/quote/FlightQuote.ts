@@ -1,3 +1,8 @@
+const _BASE_URL: string = "http://partners.api.skyscanner.net/apiservices";
+const _BROWSE_QUOTES: string = "/browsequotes";
+const _V10_URL: string = "/v1.0";
+const _API_KEY_URL: string = "apiKey=";
+
 export default class FlightQuote {
     private _headerAccept: string = "application/json";
     private _country: string;
@@ -44,5 +49,20 @@ export default class FlightQuote {
 
     public getHeaderAccept(): string {
         return this._headerAccept;
+    }
+
+    public getRequestUrl(apiKey: string): string {
+        return _BASE_URL +
+            _BROWSE_QUOTES +
+            _V10_URL +
+            "/" + this._country +
+            "/" + this._currency +
+            "/" + this._locale +
+            "/" + this._originPlace +
+            "/" + this._destinationPlace +
+            "/" + this._outboundPartialDate +
+            "/" + this._inboundPartialDate +
+            "?" + _API_KEY_URL +
+            apiKey;
     }
 }
