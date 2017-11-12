@@ -1,8 +1,11 @@
 import API from "../config/API";
 import Country from "./flight/response/types/Country";
 import FlightQuote from "./flight/quote/FlightQuote";
+import Quote from "./flight/response/types/Quote";
+import Place from "./flight/response/types/Place";
+import Carrier from "./flight/response/types/Carrier";
+import Currency from "./flight/response/types/Currency";
 import FlightResponse from "./flight/response/FlightResponse";
-import {Promise} from "es6-promise";
 
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
@@ -42,15 +45,14 @@ export default class SkyscannerRequest {
         return this;
     }
 
-    public getFlightQuotes(): Promise<FlightResponse> {
-        /*
-        if (this._currentCountry.isUndefined() || this._currentCountry.length < 1) {
+    public getFlightQuotes(): Promise<void | FlightResponse> {
+        if (this._currentCountry == null || this._currentCountry.length < 1) {
             throw new Error("currentCountry is illegal");
         }
-        if (this._originPlace.isUndefined() || this._originPlace.length < 1) {
+        if (this._originPlace == null || this._originPlace.length < 1) {
             throw new Error("originPlace is illegal");
         }
-        if (this._destinationPlace.isUndefined() || this._destinationPlace.length < 1) {
+        if (this._destinationPlace == null || this._destinationPlace.length < 1) {
             throw new Error("destinationPlace is illegal");
         }
 
@@ -63,18 +65,39 @@ export default class SkyscannerRequest {
             method: "GET"
         })
             .then((response: Response) => {
-                console.log("DATA:");
                 return response.json();
             })
             .then(json => {
-                console.log(json);
+                return {
+                    quotes: json.Quotes,
+                    places: json.Places,
+                    carriers: json.Carriers,
+                    currencies: json.Currencies
+                };
+            })
+            .then(arrays => {
+                return {
+                    quotes: arrays.quotes.map((quote: any) => {
+                        return Quote.toQuote(quote);
+                    }),
+                    places: arrays.places.map((place: any) => {
+                        return Place.toPlace(place);
+                    }),
+                    carriers: arrays.carriers.map((carrier: any) => {
+                        return Carrier.toCarrier(carrier);
+                    }),
+                    currencies: arrays.currencies.map((currency: any) => {
+                        return Currency.toCurrency(currency);
+                    })
+                }
+            })
+            .then(arrays => {
+                return new FlightResponse(arrays.quotes, arrays.places, arrays.carriers, arrays.currencies);
             })
             .catch((error) => {
                 console.log("ERROR:");
                 console.log(error);
             });
-            */
-        return new Promise(resolve => {});
     }
 
     public static getCountries(): Promise<Country> {

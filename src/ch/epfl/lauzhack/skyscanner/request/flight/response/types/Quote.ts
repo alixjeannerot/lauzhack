@@ -41,4 +41,24 @@ export default class Quote {
     public getQuoteId(): number {
         return this._quoteId;
     }
+
+    public static toQuote(quote: any): Quote {
+        let inBoundLeg: IOboundLeg = IOboundLeg.getDefault();
+        let outBoundLeg: IOboundLeg = IOboundLeg.getDefault();
+
+        if (!(quote.InboundLeg == null)) {
+            inBoundLeg = new IOboundLeg(quote.InboundLeg.CarrierIds,
+                quote.InboundLeg.OriginId,
+                quote.InboundLeg.DestinationId,
+                quote.InboundLeg.DepartureDate);
+        }
+        if (!(quote.OutboundLeg == null)) {
+            outBoundLeg = new IOboundLeg(quote.OutboundLeg.CarrierIds,
+                quote.OutboundLeg.OriginId,
+                quote.OutboundLeg.DestinationId,
+                quote.OutboundLeg.DepartureDate);
+        }
+
+        return new Quote(quote.QuoteId, quote.MinPrice, quote.Direct, outBoundLeg, inBoundLeg, quote.QuoteDateTime);
+    }
 }
