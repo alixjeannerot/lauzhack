@@ -62,4 +62,8 @@ export default class User{
     public updateStatus(){
         return !(this.journey.getDepartTime()>=Date.now() || this.journey.getArrivalTime()<=Date.now());
     }
+
+    public static defaultUser(): User{
+        return new User("", 0, "", "", Mission.defaultMission(), false, Journey.defaultJourney());
+    }
 }

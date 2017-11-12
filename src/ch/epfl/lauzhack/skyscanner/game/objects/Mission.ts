@@ -6,12 +6,12 @@ export default class Mission{
     arrival:string;
     countryArrival:string
     budget:number;
-    deadLine:Date;
+    deadLine:number;
     participant:Array<User>;
     winner: User;
     end:Boolean;
 
-    constructor(depart:string,departCountry:string,arrival:string,countryArrival:string, budget:number, deadLine:Date,
+    constructor(depart:string,departCountry:string,arrival:string,countryArrival:string, budget:number, deadLine:number,
                 participant:Array<User>){
         this.depart=depart;
         this.departCountry=departCountry;
@@ -25,19 +25,23 @@ export default class Mission{
 
     public assignMission(user :User){
         this.participant.push(user);
-        user.setMission(this)  ///////check this
+        user.setMission(this);  ///////check this
     }
 
     public isMissionComplete(){
-        if (Date.now()<this.deadLine.getTime()){
+        if (Date.now()<this.deadLine){
             for (let i=0;i<this.participant.length;i++){
                 if (this.participant[i].getPosition()==this.arrival){
-                   this.winner=this.participant[i];
-                   return true;
+                    this.winner=this.participant[i];
+                    return true;
                 }
             }
             return false;
         }
         else return true;
+    }
+
+    public static defaultMission(): Mission{
+        return new Mission("", "", "", "", 0, Date.now(), Array());
     }
 }
