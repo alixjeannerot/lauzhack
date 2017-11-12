@@ -42,4 +42,8 @@ export default class Currency {
     public getCode(): string {
         return this._code;
     }
+
+    public static toCurrency(currency: any): Currency {
+        return new Currency();
+    }
 }

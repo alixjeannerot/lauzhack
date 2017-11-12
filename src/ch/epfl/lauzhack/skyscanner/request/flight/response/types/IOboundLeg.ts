@@ -26,4 +26,8 @@ export default class IOboundLeg {
     public getCarrierIds(): Array<number> {
         return this._carrierIds;
     }
+
+    public static getDefault(): IOboundLeg {
+        return new IOboundLeg(Array(), -1, -1, "0000-00-00T00:00:00");
+    }
 }

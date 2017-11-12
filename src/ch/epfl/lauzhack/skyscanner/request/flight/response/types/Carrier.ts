@@ -14,4 +14,8 @@ export default class Carrier {
     public getCarrierId(): string {
         return this._carrierId;
     }
+
+    public static toCarrier(carrier: any): Carrier {
+        return new Carrier(carrier.CarrierId, carrier.Name);
+    }
 }
