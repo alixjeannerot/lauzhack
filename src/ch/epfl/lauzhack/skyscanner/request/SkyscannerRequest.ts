@@ -1,11 +1,14 @@
 import API from "../config/API";
 import Country from "./flight/response/types/Country";
-import FlightQuote from "./flight/quote/FlightQuote";
+import FlightQuote from "./flight/request/FlightQuote";
 import Quote from "./flight/response/types/Quote";
 import Place from "./flight/response/types/Place";
 import Carrier from "./flight/response/types/Carrier";
 import Currency from "./flight/response/types/Currency";
-import FlightResponse from "./flight/response/FlightResponse";
+import QuoteResponse from "./flight/response/QuoteResponse";
+import RouteResponse from './flight/response/RouteResponse';
+import FlightRoute from "./flight/request/FlightRoute";
+import Route from "./flight/response/types/Route";
 
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
@@ -45,7 +48,7 @@ export default class SkyscannerRequest {
         return this;
     }
 
-    public getFlightQuotes(): Promise<void | FlightResponse> {
+    public getFlightQuotes(): Promise<void | QuoteResponse> {
         if (this._currentCountry == null || this._currentCountry.length < 1) {
             throw new Error("currentCountry is illegal");
         }
@@ -92,7 +95,66 @@ export default class SkyscannerRequest {
                 }
             })
             .then(arrays => {
-                return new FlightResponse(arrays.quotes, arrays.places, arrays.carriers, arrays.currencies);
+                return new QuoteResponse(arrays.quotes, arrays.places, arrays.carriers, arrays.currencies);
+            })
+            .catch((error) => {
+                console.log("ERROR:");
+                console.log(error);
+            });
+    }
+
+    public getFlightRoutes(): Promise<void | RouteResponse> {
+        if (this._currentCountry == null || this._currentCountry.length < 1) {
+            throw new Error("currentCountry is illegal");
+        }
+        if (this._originPlace == null || this._originPlace.length < 1) {
+            throw new Error("originPlace is illegal");
+        }
+        if (this._destinationPlace == null || this._destinationPlace.length < 1) {
+            throw new Error("destinationPlace is illegal");
+        }
+
+        const flightRoute: FlightRoute =
+            new FlightRoute(this._currentCountry,
+                this._originPlace,
+                this._destinationPlace);
+
+        return fetch(flightRoute.getRequestUrl(_API_KEY), {
+            method: "GET"
+        })
+            .then((response: Response) => {
+                return response.json();
+            })
+            .then(json => {
+                return {
+                    routes: json.Routes,
+                    quotes: json.Quotes,
+                    places: json.Places,
+                    carriers: json.Carriers,
+                    currencies: json.Currencies
+                };
+            })
+            .then(arrays => {
+                return {
+                    routes: arrays.routes.map((route: any) => {
+                        return Route.toRoute(route);
+                    }),
+                    quotes: arrays.quotes.map((quote: any) => {
+                        return Quote.toQuote(quote);
+                    }),
+                    places: arrays.places.map((place: any) => {
+                        return Place.toPlace(place);
+                    }),
+                    carriers: arrays.carriers.map((carrier: any) => {
+                        return Carrier.toCarrier(carrier);
+                    }),
+                    currencies: arrays.currencies.map((currency: any) => {
+                        return Currency.toCurrency(currency);
+                    })
+                }
+            })
+            .then(arrays => {
+                return new RouteResponse(arrays.routes, arrays.quotes, arrays.places, arrays.carriers, arrays.currencies);
             })
             .catch((error) => {
                 console.log("ERROR:");

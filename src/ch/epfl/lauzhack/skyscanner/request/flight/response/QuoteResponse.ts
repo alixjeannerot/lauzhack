@@ -6,7 +6,7 @@ import Journey from "../../../game/objects/Journey";
 import TypeTransport from "../../../game/objects/TypeTransport";
 const Cities = require("all-the-cities");
 
-export default class  FlightResponse {
+export default class  QuoteResponse {
     private _quotes: Array<Quote>;
     private _places: Array<Place>;
     private _carriers: Array<Carrier>;
