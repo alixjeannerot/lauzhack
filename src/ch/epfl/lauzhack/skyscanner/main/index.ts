@@ -8,6 +8,7 @@ import User from "../game/objects/User";
 const express = require('express');
 const session = require('express-session');
 import Data from "../localStore/Data";
+import Mission from "../game/objects/Mission";
 
 
 
@@ -31,7 +32,7 @@ app.get('/', function(req, res) {
         req.session.user = User.defaultUser(); // type = User (User.ts)
         res.render('index.ejs', {user: req.session.user});
     }
-    let data = new Data (Array(User.defaultUser(),User.defaultUser()));
+    let data = new Data (Array(User.defaultUser(),User.defaultUser()),Mission.defaultMission());
     data.writeUser();
     data.readUser();
 
