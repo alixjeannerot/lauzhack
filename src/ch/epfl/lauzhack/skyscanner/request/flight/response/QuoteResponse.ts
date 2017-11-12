@@ -6,7 +6,7 @@ import Journey from "../../../game/objects/Journey";
 import TypeTransport from "../../../game/objects/TypeTransport";
 const Cities = require("all-the-cities");
 
-export default class  FlightResponse {
+export default class  QuoteResponse {
     private _quotes: Array<Quote>;
     private _places: Array<Place>;
     private _carriers: Array<Carrier>;
@@ -41,7 +41,7 @@ export default class  FlightResponse {
             let departID:number=this._quotes[i].getOutboundLeg().getOriginId();
             let departName:string= this.getNameWithId(departID);
             console.log(Cities.constructor.prototype);
-            let departCountry =Cities.filter(city => city.name===departName).country;
+            let departCountry =Cities.filter(city => city.name===departName)[0].country;
             let arrivalID=this._quotes[i].getOutboundLeg().getDestinationId();
             let arrivalName:string=this.getNameWithId(arrivalID);
             let arrivalCountry =Cities.filter(city => city.name===departName).country;
