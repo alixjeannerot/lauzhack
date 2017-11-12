@@ -31,7 +31,7 @@ export default class Mission{
     public isMissionComplete(){
         if (Date.now()<this.deadLine.getTime()){
             for (let i=0;i<this.participant.length;i++){
-                if (this.participant[i].getPosition==this.arrival){
+                if (this.participant[i].getPosition()==this.arrival){
                    this.winner=this.participant[i];
                    return true;
                 }

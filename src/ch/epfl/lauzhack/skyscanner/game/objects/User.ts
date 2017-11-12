@@ -18,13 +18,14 @@ export default class User{
         this.country=country;
         this.mission=mission;
         this.inTransport=inTransport;
+        this.journey = journey;
     }
 
-    get getPosition(){
+    public getPosition(){
         return this.position;
     }
 
-    get getInTransport(){
+    public getInTransport(){
         this.inTransport=this.updateStatus();
         return this.inTransport;
     }
@@ -51,17 +52,14 @@ export default class User{
     public travelTo (destination :Journey){
         this.inTransport= this.updateStatus();
         if (!this.getInTransport){
-            if (this.position==destination.getDepart){
-                this.setPosition(destination.getArrival,destination.getArrivalCountry);
+            if (this.position==destination.getDepart()){
+                this.setPosition(destination.getArrival(),destination.getArrivalCountry());
             }
             else throw new Error("Illegal argument exception");
-            return this.debit(destination.getCost);
+            return this.debit(destination.getCost());
         }
     }
     public updateStatus(){
-        if (this.journey.getDepartTime>=Date.now() || this.journey.getArrivalTime<=Date.now()){
-            return false;
-        }
-        else return true;
+        return !(this.journey.getDepartTime()>=Date.now() || this.journey.getArrivalTime()<=Date.now());
     }
 }
