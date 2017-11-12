@@ -26,4 +26,8 @@ export default class Place {
     public getPlaceId(): number {
         return this._placeId;
     }
+
+    public static toPlace(place: any): Place {
+        return new Place(place.PlaceId, place.Name, place.Type, place.SkyscannerCode);
+    }
 }
