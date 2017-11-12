@@ -31,16 +31,33 @@
 
         <div id="map"></div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.20.13/system.js"></script>
-        <script>SystemJS.import('/app.js');</script>
+        <script>
+            console.log("Start");
+            System.config({
+                transpiler: 'typescript',
+                map : {
+                    typescript: '/typescript/lib/typescript.js'
+                }
+            });
+            console.log("Go on");
+            System.import('js/app.ts')
+                .then(function (error, message) {
+                    console.log("cccaaca");
+                    if (error !== undefined) {
+                        console.log(message);
+                    } else {
+                        console.log(error);
+                    }
+                })
+                .catch(function (error) {
+                    console.log("Prout");
+                    console.log(error);
+                });
+                console.log("End");
+        </script>
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu5nZKbeK-WHQ70oqOWo-_4VmwOwKP9YQ"></script>
         <script src="googlemap.js"></script>
-        <script src="app.js"></script>
-        <% if(user){ %>
-            <script>
-                //var user = <%= user %>
-            </script>
-        <% } %>
     </body>
 </html>

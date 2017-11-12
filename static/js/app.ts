@@ -1,10 +1,10 @@
 import SkyscannerRequest from "../../src/ch/epfl/lauzhack/skyscanner/request/SkyscannerRequest"; 
 import User from "../../src/ch/epfl/lauzhack/skyscanner/game/objects/User";
 
-    export default class App{  
+    export class App{  
     private static req: SkyscannerRequest = new SkyscannerRequest();    
-    public static run(user: User): void{  
-        console.log(user); 
+    public static run(): void{  
+        console.log("Hello"); 
         App.updateMap();  
     }    
     private static updateMap(): void{  
@@ -14,3 +14,5 @@ import User from "../../src/ch/epfl/lauzhack/skyscanner/game/objects/User";
         getFlightQuote.then((fr: FlightResponse) => { fr.toJourney() }).catch(error => {});   */
     }
 }
+
+App.run();

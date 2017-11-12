@@ -13,6 +13,7 @@ const app = express();
 app.use(session({secret: 'skyscanner2luxe', resave: false, saveUninitialized: false, cookie: { maxAge: 30*24*60*60000 }}));
 app.use(express.static('build'));
 app.use(express.static('static'));
+app.use(express.static('node_modules'));
 
 app.get('/', function(req, res) {
     res.setHeader('Content-Type', 'text/html');
