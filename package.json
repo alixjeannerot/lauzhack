@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run build:live",
     "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/ch/epfl/lauzhack/skyscanner/main/index.ts",
-    "compile": "tsc --outDir ./build --module commonjs ./static/js/*.ts"
+    "compile": "tsc --outFile ./build/app.js --module system ./static/js/*.ts"
   },
   "repository": {
     "type": "git",
