@@ -70,8 +70,4 @@ export default class User{
     public static defaultUser(): User{
         return new User("", 0, "", "", Mission.defaultMission(), false, Journey.defaultJourney());
     }
-
-    public static defaultUser(): User{
-        return new User("", 0, "", "", Mission.defaultMission(), false, Journey.defaultJourney());
-    }
 }

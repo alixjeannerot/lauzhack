@@ -1,4 +1,4 @@
- import SkyscannerRequest from "../../src/ch/epfl/lauzhack/skyscanner/request/SkyscannerRequest"; 
+import SkyscannerRequest from "../../src/ch/epfl/lauzhack/skyscanner/request/SkyscannerRequest"; 
 import User from "../../src/ch/epfl/lauzhack/skyscanner/game/objects/User";
 
     export default class App{  
