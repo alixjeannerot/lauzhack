@@ -21,16 +21,11 @@ export default class User{
         this.journey = journey;
     }
 
-    get getPosition() :string{
-        if (this.inTransport){
-            return "Somewhere between "+this.journey.getDepart+" and "+this.journey.getArrival;
-        }
-        else{
-            return this.position;
-        }
+    public getPosition(){
+        return this.position;
     }
 
-    get getInTransport():boolean{
+    public getInTransport(){
         this.inTransport=this.updateStatus();
         return this.inTransport;
     }
@@ -59,20 +54,17 @@ export default class User{
     public travelTo (destination :Journey):void{
         this.inTransport= this.updateStatus();
         if (!this.getInTransport){
-            if (this.position==destination.getDepart){
-                this.setPosition(destination.getArrival,destination.getArrivalCountry);
-                this.debit(destination.getCost);
+            if (this.position==destination.getDepart()){
+                this.setPosition(destination.getArrival(),destination.getArrivalCountry());
             }
             else throw new Error("Illegal argument exception");
+            return this.debit(destination.getCost());
         }
         else throw new Error("User travelling");
     }
 
-    private updateStatus():boolean {
-        if (this.journey.getDepartTime>=Date.now() || this.journey.getArrivalTime<=Date.now()){
-            return false;
-        }
-        else return true;
+    public updateStatus(){
+        return !(this.journey.getDepartTime()>=Date.now() || this.journey.getArrivalTime()<=Date.now());
     }
 
     public static defaultUser(): User{

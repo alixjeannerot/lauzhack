@@ -25,15 +25,15 @@ export default class Mission{
 
     public assignMission(user :User):void{
         this.participant.push(user);
-        user.setMission(this);
+        user.setMission(this);  ///////check this
     }
 
     public isMissionComplete():boolean{
         if (Date.now()<this.deadLine){
             for (let i=0;i<this.participant.length;i++){
-                if (this.participant[i].getPosition==this.arrival){
-                   this.winner=this.participant[i];
-                   return true;
+                if (this.participant[i].getPosition()==this.arrival){
+                    this.winner=this.participant[i];
+                    return true;
                 }
             }
             return false;

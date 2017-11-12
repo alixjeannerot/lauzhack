@@ -24,25 +24,25 @@ export default class Journey {
         this.type=type;
     }
 
-    get getDepart():string{
+    public getDepart(){
         return this.depart;
     }
-    get getArrival():string{
+    public getArrival(){
         return this.arrival;
     }
-    get getDepartTime():number{
+    public getDepartTime(){
         return this.departTime;
     }
-    get getArrivalTime():number{
+    public getArrivalTime(){
         return this.arrivalTime;
     }
-    get getDepartCountry():string{
+    public getDepartCountry(){
         return this.departCountry;
     }
-    get getArrivalCountry():string{
+    public getArrivalCountry(){
         return this.arrivalCountry;
     }
-    get getCost():number {
+    public getCost(){
         return this.cost;
     }
 

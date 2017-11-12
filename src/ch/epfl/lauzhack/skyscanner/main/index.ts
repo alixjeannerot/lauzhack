@@ -3,8 +3,8 @@
  * Please note that in order to use express-session objects, we need to deactivate type-checking.
  * Types of use objects are written in comments to avoid any confusion.
  */
-
 import User from "../game/objects/User";
+
 const express = require('express');
 const session = require('express-session');
 import Data from "../localStore/Data";
