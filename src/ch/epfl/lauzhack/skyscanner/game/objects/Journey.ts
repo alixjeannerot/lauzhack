@@ -1,4 +1,5 @@
 import TypeTransport from "./TypeTransport";
+const Cities = require("all-the-cities");
 
 
 export default class Journey {
@@ -48,4 +49,13 @@ export default class Journey {
     public static defaultJourney(): Journey{
         return new Journey("", "", "", "", 0, 0, 0, TypeTransport.PLANE);
     }
+
+    public getLatForArrival():number{
+        return Cities.filter(city=>city===this.arrival)[0].lat;
+    }
+
+    public getLongForArrival():number{
+        return Cities.filter(city=>city===this.arrival)[0].long;
+    }
+
 }
